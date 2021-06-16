@@ -29,13 +29,13 @@
             <div class="row">
                 <div class="col-sm-6">
                     <mat-form-field class="full-width">
-                        <input formControlName="age" matInput placeholder="Edad">
+                        <input type="number" formControlName="age" matInput placeholder="Edad">
                     </mat-form-field>
                 </div>
             </div>
         </mat-card-content>
         <mat-card-actions>
-            <button (click)="saveForm()" mat-raised-button color="primary">Guardar</button>
+            <button (click)="saveForm()" mat-raised-button color="primary" [disabled]="profileForm.invalid">Guardar</button>
         </mat-card-actions>
     </mat-card>
 </form>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder ,Validators } from '@angular/forms';
 import { EmpleadoServService } from '../empleado-serv.service';
 import { Employee } from '../lista-empleados/lista-empleados.component';
 @Component({
@@ -24,9 +24,9 @@ export class AltaEmpleadoComponent implements OnInit {
   }
 
  profileForm = this.formBuilder.group({
-   firstName:[''],
-   lastName:[''],
-   departamento:[''],
+   firstName:['', Validators.required],
+   lastName:['', Validators.required],
+   departamento:['', Validators.required],
    age:['']
   });
 
