@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder ,Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { EmpleadoServService } from '../empleado-serv.service';
-import { Employee } from '../lista-empleados/lista-empleados.component';
+import { Employee } from '../dto/employee';
 @Component({
   selector: 'app-alta-empleado',
   templateUrl: './alta-empleado.component.html',
@@ -9,40 +9,39 @@ import { Employee } from '../lista-empleados/lista-empleados.component';
 })
 export class AltaEmpleadoComponent implements OnInit {
   departamentos = [
-    {value: 'contabilidad', viewValue: 'Contabilidad'},
-    {value: 'marketing', viewValue: 'Marketing'},
-    {value: 'sistemas', viewValue: 'Sistemas'}
+    { value: 'contabilidad', viewValue: 'Contabilidad' },
+    { value: 'marketing', viewValue: 'Marketing' },
+    { value: 'sistemas', viewValue: 'Sistemas' }
   ];
   selectedValue: string;
   constructor(
-    private formBuilder:FormBuilder,
-    private empleadoServ:EmpleadoServService,
-    ){
-     
-    }
+    private formBuilder: FormBuilder,
+    private empleadoServ: EmpleadoServService,
+  ) {}
+  
   ngOnInit(): void {
   }
 
- profileForm = this.formBuilder.group({
-   firstName:['', Validators.required],
-   lastName:['', Validators.required],
-   departamento:['', Validators.required],
-   age:['']
+  profileForm = this.formBuilder.group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
+    departamento: ['', Validators.required],
+    age: ['']
   });
 
- saveForm(){
-   console.log('Form data is ', this.profileForm.value);
-   let empl:Employee = {
-    age : this.profileForm.value.age,
-    lastName:this.profileForm.value.lastName,
-    name:this.profileForm.value.firstName,
-    place:this.profileForm.value.departamento,
+  saveForm() {
+    console.log('Form data is ', this.profileForm.value);
+    let empl: Employee = {
+      age: this.profileForm.value.age,
+      lastName: this.profileForm.value.lastName,
+      name: this.profileForm.value.firstName,
+      place: this.profileForm.value.departamento,
 
-   };
-   
-  this.empleadoServ.newEmployee(empl);
- }
+    };
 
-  
- 
+    this.empleadoServ.newEmployee(empl);
+  }
+
+
+
 }

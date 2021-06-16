@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadoServService } from '../empleado-serv.service';
+import { Employee } from '../dto/employee';
 
-export interface Employee {
-  name: string;
-  lastName: string;
-  place: string;
-  age: number;
-}
 
-const ELEMENT_DATA: Employee[] = [
+const employees: Employee[] = [
   { name: 'juan', lastName: 'perez', place: 'Sistemas', age:40},
   { name: 'pedro', lastName: 'rodriguez', place: 'Marketing',age:22},
 ];
@@ -19,13 +14,13 @@ const ELEMENT_DATA: Employee[] = [
 })
 export class ListaEmpleadosComponent implements OnInit {
   displayedColumns: string[] = ['name', 'lastName', 'place', 'age'];
-  dataSource = ELEMENT_DATA;
+  dataSource = employees;
   constructor(private empleadoServ:EmpleadoServService ) {
   }
   
   ngOnInit(): void {
     this.empleadoServ.newEmployee$.subscribe((data:any)=>{
-      ELEMENT_DATA.push(data)
+      employees.push(data)
     })
   }
 }
